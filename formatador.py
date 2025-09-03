@@ -152,7 +152,7 @@ def processar_respostas_txt_v4(file_path):
     Agora com suporte a detecção automática de série.
     """
     dados_respostas = []
-    max_questoes = 150  # AJUSTE AQUI: Máximo de questões a processar
+    max_questoes = 200  # AJUSTE AQUI: Máximo de questões a processar (expandido para 200)
     serie_arquivo = extrair_serie_do_nome_arquivo(file_path)
     
     print(f"\n📝 Processando respostas: {file_path} ({serie_arquivo})")

@@ -14,13 +14,14 @@ Sistema completo para processamento e formatação de dados escolares **disponí
 ## 🚀 Funcionalidades
 
 ### ✨ Principais Recursos
-- **🔍 Detecção Automática**: Encontra automaticamente arquivos de nomes e respostas
 - **📤 Upload Manual**: Interface para upload direto de arquivos
 - **📊 Dashboard Interativo**: Interface web moderna e intuitiva
 - **📚 Organização por Série**: Abas separadas para cada série (8º Ano, 9º Ano, 1ª Série, 2ª Série)
 - **📅 Nomenclatura com Timestamp**: Arquivos salvos com data e hora
-- **💻 Executável Standalone**: Funciona sem Python instalado
+- **🌐 Aplicação Web**: Disponível online via navegador
 - **📈 Estatísticas em Tempo Real**: Métricas e gráficos dos dados processados
+- **📝 Suporte Expandido**: Processa até 200 questões (Q001-Q200)
+- **⭐ Preservação de Asteriscos**: Mantém asteriscos nas posições exatas
 
 ### 📋 Formatos Suportados
 - **Entrada**: Arquivos .txt com nomes e respostas
@@ -103,17 +104,18 @@ formatador/
 
 ## 🎯 Como Usar o Dashboard
 
-### 🔍 Modo Detecção Automática
-1. Coloque seus arquivos na pasta do programa
-2. Clique em "🚀 Processar Arquivos Automaticamente"
-3. O sistema encontrará automaticamente os arquivos
-4. Visualize os resultados e baixe o Excel
+### 📤 Upload Manual de Arquivos
+1. **📁 Upload**: Faça upload dos seus arquivos de nomes e respostas
+2. **🚀 Processar**: Clique em "Processar Arquivos"
+3. **📊 Visualizar**: Analise os resultados e estatísticas
+4. **📥 Baixar**: Download do arquivo Excel processado
 
-### 📤 Modo Upload Manual
-1. Clique na aba "📤 Upload Manual"
-2. Selecione os arquivos de nomes e respostas
-3. Clique em "🚀 Processar Arquivos"
-4. Visualize os resultados e baixe o Excel
+### ✨ Funcionalidades Disponíveis
+- **📊 Métricas**: Total de alunos, séries, salas e questões
+- **📈 Gráficos**: Distribuição por série
+- **👁️ Preview**: Visualização dos primeiros registros
+- **⚠️ Alertas**: Identificação de problemas nos dados
+- **📝 Suporte**: Até 200 questões com preservação de asteriscos
 
 ## 📊 Estrutura do Excel Gerado
 
@@ -132,7 +134,8 @@ formatador/
 - **Sala**: Sala/turma
 - **Serie**: Série/ano escolar
 - **Gabarito_Completo**: String com todas as respostas
-- **Q001-Q150**: Questões individuais
+- **Q001-Q200**: Questões individuais (expandido para 200 questões)
+- **⭐ Asteriscos**: Preservados nas posições exatas conforme necessário
 
 ## 📦 **Como Distribuir para Outras Pessoas**
 

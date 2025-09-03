@@ -4,7 +4,7 @@ import os
 import zipfile
 from datetime import datetime
 import io
-from formatador import detectar_arquivos_automaticamente, processar_nomes_txt_v3, processar_respostas_txt_v4, extrair_serie_do_nome_arquivo
+from formatador import processar_nomes_txt_v3, processar_respostas_txt_v4, extrair_serie_do_nome_arquivo
 
 # Configuração da página
 st.set_page_config(
@@ -150,54 +150,37 @@ def main():
     st.sidebar.title("🎛️ Painel de Controle")
     st.sidebar.markdown("---")
     
-    # Modo de operação
-    modo = st.sidebar.radio(
-        "Escolha o modo de operação:",
-        ["📁 Detecção Automática", "📤 Upload Manual"]
-    )
+    # Upload Manual de Arquivos
+    st.sidebar.info("📤 **Upload Manual**: Faça upload dos seus arquivos de nomes e respostas para processamento.")
     
-    if modo == "📁 Detecção Automática":
-        st.markdown('<div class="info-box">', unsafe_allow_html=True)
-        st.info("🔍 **Modo Automático**: O sistema buscará automaticamente por arquivos com padrões 'nomes*.txt' e 'respostas*.txt' na pasta atual e subpastas.")
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        if st.button("🚀 Processar Arquivos Automaticamente", type="primary"):
-            with st.spinner("Detectando arquivos..."):
-                arquivos_nomes, arquivos_respostas = detectar_arquivos_automaticamente()
-            
-            if not arquivos_nomes or not arquivos_respostas:
-                st.error("❌ Nenhum arquivo encontrado. Verifique se existem arquivos com 'nomes' e 'respostas' no nome.")
-                return
-            
-            # Mostrar arquivos encontrados
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                st.subheader("📁 Arquivos de Nomes")
-                for arquivo in arquivos_nomes:
-                    st.write(f"• {arquivo}")
-            
-            with col2:
-                st.subheader("📝 Arquivos de Respostas")
-                for arquivo in arquivos_respostas:
-                    st.write(f"• {arquivo}")
-            
-            # Processar arquivos
+    st.markdown('<div class="info-box">', unsafe_allow_html=True)
+    st.info("📤 **Modo Manual**: Faça upload dos seus arquivos de nomes e respostas.")
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("📁 Arquivos de Nomes")
+        arquivos_nomes = st.file_uploader(
+            "Selecione os arquivos de nomes (.txt)",
+            type=['txt'],
+            accept_multiple_files=True,
+            key="nomes"
+        )
+    
+    with col2:
+        st.subheader("📝 Arquivos de Respostas")
+        arquivos_respostas = st.file_uploader(
+            "Selecione os arquivos de respostas (.txt)",
+            type=['txt'],
+            accept_multiple_files=True,
+            key="respostas"
+        )
+    
+    if arquivos_nomes and arquivos_respostas:
+        if st.button("🚀 Processar Arquivos", type="primary"):
             with st.spinner("Processando dados..."):
-                todos_nomes = []
-                todas_respostas = []
-                
-                # Processar nomes
-                for arquivo in arquivos_nomes:
-                    df_nomes = processar_nomes_txt_v3(arquivo)
-                    if not df_nomes.empty:
-                        todos_nomes.append(df_nomes)
-                
-                # Processar respostas
-                for arquivo in arquivos_respostas:
-                    df_respostas = processar_respostas_txt_v4(arquivo)
-                    if not df_respostas.empty:
-                        todas_respostas.append(df_respostas)
+                todos_nomes, todas_respostas = processar_arquivos_upload(arquivos_nomes, arquivos_respostas)
                 
                 if not todos_nomes or not todas_respostas:
                     st.error("❌ Erro ao processar arquivos")
@@ -236,74 +219,6 @@ def main():
             
             # Mostrar resultados
             mostrar_resultados(df_final, df_unificado)
-    
-    else:  # Upload Manual
-        st.markdown('<div class="info-box">', unsafe_allow_html=True)
-        st.info("📤 **Modo Manual**: Faça upload dos seus arquivos de nomes e respostas.")
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.subheader("📁 Arquivos de Nomes")
-            arquivos_nomes = st.file_uploader(
-                "Selecione os arquivos de nomes (.txt)",
-                type=['txt'],
-                accept_multiple_files=True,
-                key="nomes"
-            )
-        
-        with col2:
-            st.subheader("📝 Arquivos de Respostas")
-            arquivos_respostas = st.file_uploader(
-                "Selecione os arquivos de respostas (.txt)",
-                type=['txt'],
-                accept_multiple_files=True,
-                key="respostas"
-            )
-        
-        if arquivos_nomes and arquivos_respostas:
-            if st.button("🚀 Processar Arquivos", type="primary"):
-                with st.spinner("Processando dados..."):
-                    todos_nomes, todas_respostas = processar_arquivos_upload(arquivos_nomes, arquivos_respostas)
-                    
-                    if not todos_nomes or not todas_respostas:
-                        st.error("❌ Erro ao processar arquivos")
-                        return
-                    
-                    # Consolidar dados
-                    df_nomes = pd.concat(todos_nomes, ignore_index=True)
-                    df_respostas = pd.concat(todas_respostas, ignore_index=True)
-                    
-                    # Unificar
-                    df_unificado = pd.merge(
-                        df_nomes,
-                        df_respostas,
-                        on='ID_Normalizado',
-                        how='outer',
-                        suffixes=('_nomes', '_respostas')
-                    )
-                    
-                    df_unificado['Serie'] = df_unificado['Serie_nomes'].fillna(df_unificado['Serie_respostas'])
-                    
-                    # Preparar dados finais
-                    colunas_basicas = ['ID_Nome', 'Nome', 'Sala', 'Serie', 'Respostas_String']
-                    colunas_questoes = [col for col in df_unificado.columns if col.startswith('Q')]
-                    colunas_questoes.sort()
-                    
-                    df_final = df_unificado.dropna(subset=['ID_Nome', 'ID_Resposta'])[colunas_basicas + colunas_questoes].copy()
-                    df_final = df_final.rename(columns={
-                        'ID_Nome': 'ID',
-                        'Nome': 'Nome',
-                        'Sala': 'Sala',
-                        'Serie': 'Serie',
-                        'Respostas_String': 'Gabarito_Completo'
-                    })
-                    
-                    df_final['Sala'] = df_final['Sala'].fillna('Sala_Não_Identificada')
-                
-                # Mostrar resultados
-                mostrar_resultados(df_final, df_unificado)
     
     # Rodapé
     st.markdown('<div class="footer">Desenvolvido por Caio Murakami</div>', unsafe_allow_html=True)
@@ -369,6 +284,7 @@ def mostrar_resultados(df_final, df_unificado):
     )
     
     st.info(f"📋 **Abas criadas**: Dados_Completos, 8_Ano, 9_Ano, 1_Serie, 2_Serie, Estatisticas, Resumo_Salas")
+    st.info(f"📝 **Suporte expandido**: Agora processa até 200 questões (Q001-Q200) com preservação de asteriscos")
 
 if __name__ == "__main__":
     main()

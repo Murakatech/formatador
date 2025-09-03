@@ -24,8 +24,6 @@ showErrorDetails = true
 
 [runner]
 magicEnabled = true
-installTracer = false
-fixMatplotlib = true
 postScriptGC = true
 fastReruns = true
 enforceSerializableSessionState = false
