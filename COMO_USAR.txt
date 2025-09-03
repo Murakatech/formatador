@@ -1,0 +1,113 @@
+🎯 FORMATADOR DE DADOS ESCOLARES - GUIA RÁPIDO
+═══════════════════════════════════════════════════════════
+
+📋 INSTRUÇÕES PARA USO:
+
+1. 🚀 EXECUTAR O APLICATIVO:
+   ► Clique duas vezes em "Instalar_e_Executar.bat"
+   ► O sistema fará TUDO automaticamente:
+     • Detecta se Python está instalado
+     • Baixa e instala Python se necessário
+     • Instala todas as bibliotecas necessárias
+     • Abre o aplicativo no navegador
+
+2. 📁 USAR O SISTEMA:
+   ► Coloque seus arquivos de dados na pasta do programa
+   ► Use a interface web para processar os dados
+   ► Baixe o resultado em Excel
+
+3. 🌐 COMPARTILHAR COM OUTRAS PESSOAS:
+   ► Para acesso local: http://localhost:8501
+   ► Para acesso na rede: http://SEU_IP:8501
+   ► Descubra seu IP: abra CMD e digite "ipconfig"
+
+4. ❌ FECHAR O PROGRAMA:
+   ► Pressione Ctrl+C na janela preta (terminal)
+   ► Ou simplesmente feche a janela preta
+
+═══════════════════════════════════════════════════════════
+
+📁 ESTRUTURA DOS ARQUIVOS DE DADOS:
+
+📄 Arquivos de Nomes:
+   • Devem conter "nomes" no nome do arquivo
+   • Exemplos: "nomes_1serie.txt", "nomes 8° ano.txt"
+   • Formato: Código + Nome (separados por espaço ou tab)
+
+📄 Arquivos de Respostas:
+   • Devem conter "respostas" no nome do arquivo
+   • Exemplos: "respostas_1serie.txt", "respostas 8° ano.txt"
+   • Formato: N + Código + String de respostas (A,B,C,D,E,*)
+
+═══════════════════════════════════════════════════════════
+
+⚠️  REQUISITOS DO SISTEMA:
+
+✅ Windows 7 ou superior
+✅ Conexão com internet (apenas na primeira execução)
+✅ 2GB de RAM mínimo
+✅ 1GB de espaço livre no disco
+✅ Navegador web moderno (Chrome, Firefox, Edge)
+
+═══════════════════════════════════════════════════════════
+
+🆘 SOLUÇÃO DE PROBLEMAS:
+
+❓ O programa não abre?
+   ► Execute como administrador
+   ► Verifique sua conexão com internet
+   ► Desative temporariamente o antivírus
+
+❓ Erro de "não é possível executar scripts"?
+   ► Abra PowerShell como administrador
+   ► Digite: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ► Pressione Y e Enter
+
+❓ Antivírus está bloqueando?
+   ► Adicione a pasta do programa às exceções
+   ► Ou execute como administrador
+
+❓ Não consegue acessar de outro computador?
+   ► Verifique se o firewall está bloqueando a porta 8501
+   ► Use o IP correto da máquina que está executando
+
+❓ Arquivos não são encontrados?
+   ► Verifique se os nomes seguem o padrão especificado
+   ► Certifique-se de que estão na mesma pasta do programa
+   ► Verifique a codificação dos arquivos (UTF-8)
+
+═══════════════════════════════════════════════════════════
+
+📞 SUPORTE:
+
+Para problemas técnicos:
+• Verifique os logs na janela do terminal
+• Consulte este arquivo de instruções
+• Teste com os arquivos de exemplo incluídos
+
+═══════════════════════════════════════════════════════════
+
+🎉 PRIMEIRA EXECUÇÃO:
+
+Na primeira vez que executar:
+1. O sistema baixará Python (≈30MB)
+2. Instalará as bibliotecas necessárias (≈100MB)
+3. Isso pode demorar 5-10 minutos
+4. Execuções futuras serão instantâneas!
+
+═══════════════════════════════════════════════════════════
+
+📦 DISTRIBUIÇÃO:
+
+Para enviar para outras pessoas:
+1. Compacte toda a pasta em um arquivo ZIP
+2. Envie por email, Google Drive, WeTransfer, etc.
+3. A pessoa só precisa extrair e executar "Instalar_e_Executar.bat"
+4. Tudo será instalado automaticamente!
+
+═══════════════════════════════════════════════════════════
+
+Desenvolvido por Caio Murakami
+Versão 3.0 - Instalação Automática
+
+🚀 Formatador de Dados Escolares - Simples, Rápido, Eficiente!

@@ -1,0 +1,36 @@
+
+🎯 FORMATADOR DE DADOS ESCOLARES v3.0
+═══════════════════════════════════════════════════════════
+
+🚀 NOVA VERSÃO COM INSTALAÇÃO AUTOMÁTICA!
+
+📋 ESCOLHA SUA OPÇÃO:
+
+🎯 OPÇÃO 1 - INSTALAÇÃO AUTOMÁTICA (RECOMENDADO):
+   ► Execute: "Instalar_e_Executar.bat"
+   ► O sistema instala Python automaticamente se necessário
+   ► Funciona em qualquer computador!
+
+⚡ OPÇÃO 2 - EXECUÇÃO RÁPIDA (se já tem Python):
+   ► Execute: "Iniciar_Formatador.bat"
+   ► Inicia imediatamente se Python estiver instalado
+
+📖 INSTRUÇÕES COMPLETAS:
+   ► Consulte: "COMO_USAR.txt"
+   ► Contém guia detalhado e solução de problemas
+
+📁 ESTRUTURA DE ARQUIVOS:
+- Arquivos de nomes: devem conter "nomes" no nome (ex: nomes_1serie.txt)
+- Arquivos de respostas: devem conter "respostas" no nome (ex: respostas_1serie.txt)
+
+🌐 ACESSO REMOTO:
+- Local: http://localhost:8501
+- Rede: http://SEU_IP:8501 (descubra IP com: ipconfig)
+
+⚠️  IMPORTANTE:
+- Primeira execução pode demorar (download do Python)
+- Mantenha todos os arquivos na mesma pasta
+- Para fechar: pressione Ctrl+C na janela do terminal
+
+═══════════════════════════════════════════════════════════
+Desenvolvido por Caio Murakami - v3.0 Instalação Automática
